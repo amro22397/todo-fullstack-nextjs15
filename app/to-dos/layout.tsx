@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import SideBar from "./component/Sidebar";
 import { getSession } from "../actions/getUser";
+import tasksList from "@/models/tasks-list";
 
 
 const poppins = Poppins({
@@ -26,10 +27,13 @@ export default async function RootLayout({
   const session = await getSession();
       console.log(session?.user?.email);
 
+      const tasksLists = await tasksList.find({userEmail: {$in: [session?.user?.email]}})
+      const jTasklists = JSON.parse(JSON.stringify(tasksLists));
+
   return (
     
         <div className="flex md:flex-row flex-col">
-        <SideBar email={session?.user?.email} />
+        <SideBar email={session?.user?.email} tasksList={jTasklists} />
         {children}
         </div>
         
