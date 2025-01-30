@@ -1,7 +1,5 @@
 'use client'
 
-import { Checkbox } from "@/components/ui/checkbox";
-
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import ComboboxDemo from "./PriorityCombobox";
@@ -9,12 +7,7 @@ import TasksOptions from "./TasksOptions";
 // import { useTasksStore } from "@/app/stores/useTasksStore";
 import { Task, TaskList } from "@/app/data/Tasks";
 import { useEffect, useState } from "react";
-import { toast } from "@/hooks/use-toast";
-import CircularProgress from '@mui/material/CircularProgress';
 import { FaUmbrellaBeach } from "react-icons/fa6";
-import { useSession } from "next-auth/react";
-import mongoose from "mongoose";
-import { Tasks } from "@/models/tasks";
 import CheckBoxComponent from "./CheckBoxComponent";
 import axios from "axios";
 
