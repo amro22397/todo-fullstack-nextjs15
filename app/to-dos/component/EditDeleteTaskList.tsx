@@ -35,9 +35,10 @@ import { usePathname, useRouter } from 'next/navigation'
 
   
 
-const EditDeleteTaskList = ({ tasklist, tasksList, email }: {
+const EditDeleteTaskList = ({ tasklist, tasksList, email, fetchTasksList }: {
   tasklist: TaskList, tasksList: TaskList[],
-  email: string | null | undefined
+  email: string | null | undefined,
+  fetchTasksList: () => void,
 }) => {
 
     const router = useRouter();
@@ -80,7 +81,7 @@ const EditDeleteTaskList = ({ tasklist, tasksList, email }: {
         })
     })
     .then(() => {
-        window.location.reload();
+      fetchTasksList();
     })
     .catch((error) => {
         toast({
@@ -102,16 +103,18 @@ const EditDeleteTaskList = ({ tasklist, tasksList, email }: {
     axios.delete(`/api/tasks-list/${tasklist._id}`)
     .then(() => {
       setDeleteDialog(false);
-        window.location.reload();
         if (pathname.includes(tasklist._id)) {
           const id = tasksList[0]._id;
-          router.push(`/to-dos/${id}`)
         }
     })
     .then(() => {
       toast({
+        variant: "destructive",
           title: "Task List deleted successfully"
       })
+  })
+  .then(() => {
+    fetchTasksList();
   })
     .catch((error) => {
         toast({

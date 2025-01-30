@@ -90,12 +90,12 @@ function TaskPriority({isTaskDialogOpened, selected, setSelected}: {
 
  
 
-  useEffect(() => {
-    if (isTaskDialogOpened /* && !taskSelected */) {
-      // setValue("priority", "low");
-      // trigger("priority"); // Validate the form if necessary
-    }
-  }, [isTaskDialogOpened, /*trigger*/]);
+  // useEffect(() => {
+  //   if (isTaskDialogOpened /* && !taskSelected */) {
+  //     // setValue("priority", "low");
+  //     // trigger("priority"); // Validate the form if necessary
+  //   }
+  // }, [isTaskDialogOpened, /*trigger*/]);
 
   // Handle onValueChange and trigger validation
   const handlePriorityChange = (value: string) => {
@@ -158,12 +158,12 @@ function TaskStatus({ isTaskDialogOpened, selectedStatus, setSelectedStatus }: {
 
   
 
-  useEffect(() => {
-    if (isTaskDialogOpened /* && !taskSelected */) {
-      // setValue("status", "in progress");
-      // trigger("status"); // Validate the form if necessary
-    }
-  }, [isTaskDialogOpened, /* trigger */]); // Dependencies ensure it runs when the dialog opens
+  // useEffect(() => {
+  //   if (isTaskDialogOpened /* && !taskSelected */) {
+  //     // setValue("status", "in progress");
+  //     // trigger("status"); // Validate the form if necessary
+  //   }
+  // }, [isTaskDialogOpened, /* trigger */]); // Dependencies ensure it runs when the dialog opens
 
   function handleStatusChange(value: string) {
     console.log(value);

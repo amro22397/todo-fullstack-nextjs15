@@ -71,15 +71,19 @@ const TasksWithId = ({ id, email }: { id: string, email: string | null | undefin
         {/* <CircularProgress size="sm" color="primary" /> */}
         <TaskHeader pagetaskList={pageTasksList} email={email} />
         <Stats tasks={tasks}/>
-        <AllTasksHeader taskListId={id} email={email} />
-        <TasksArea tasks={tasks} tasksList={tasksList}  />
+        <AllTasksHeader taskListId={id} email={email} fetchTasks={fetchTasks} />
+        <TasksArea tasks={tasks} tasksList={tasksList} fetchTasks={fetchTasks}  />
         <TasksFooter tasks={tasks} />
       </div>
     </div>
   )
 }
 
-function AllTasksHeader({ taskListId, email }: { taskListId: string, email: string | null | undefined }) {
+function AllTasksHeader({ taskListId, email, fetchTasks }: {
+  taskListId: string,
+  email: string | null | undefined,
+  fetchTasks: () => void
+ }) {
 
   
     return (
@@ -90,7 +94,7 @@ function AllTasksHeader({ taskListId, email }: { taskListId: string, email: stri
         </div>
   
         
-        <TasksDialog taskListId={taskListId} email={email} />
+        <TasksDialog taskListId={taskListId} email={email} fetchTasks={fetchTasks} />
         
       </div>
     );

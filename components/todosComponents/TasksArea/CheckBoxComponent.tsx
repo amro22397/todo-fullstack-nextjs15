@@ -9,7 +9,10 @@ import { useRouter } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 
 
-const CheckBoxComponent = ({ singleTask }: { singleTask: Task}) => {
+const CheckBoxComponent = ({ singleTask, fetchTasks }: { 
+  singleTask: Task,
+  fetchTasks: () => void
+}) => {
     const [loading, setLoading] = useState(false);
 
     const router = useRouter();
@@ -24,7 +27,7 @@ const CheckBoxComponent = ({ singleTask }: { singleTask: Task}) => {
         })
         .then(() => {
             setLoading(false);
-            window.location.reload();
+            fetchTasks();
         })
         .catch((error) => {
             console.log(error);
@@ -35,7 +38,7 @@ const CheckBoxComponent = ({ singleTask }: { singleTask: Task}) => {
     <div className='hover:opacity-90'>
       
     {loading ? (
-        <CircularProgress color="primary" />
+        <CircularProgress size={24} color="primary" />
       ) : (
         <>
         <Checkbox

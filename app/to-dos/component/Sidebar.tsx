@@ -55,11 +55,11 @@ console.log(tasksList);
             <div className="flex flex-row justify-between items-center">
             <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-100 mb-2">Tasks List</h2>
 
-            <TaskListAddDialog tasksList={tasksList} email={email} />
+            <TaskListAddDialog tasksList={tasksList} email={email} fetchTasksList={fetchTasksList} />
             
             </div>
 
-            <SidebarTaskLists tasksList={tasksList} email={email} />
+            <SidebarTaskLists tasksList={tasksList} email={email} fetchTasksList={fetchTasksList} />
             </div>
 
 

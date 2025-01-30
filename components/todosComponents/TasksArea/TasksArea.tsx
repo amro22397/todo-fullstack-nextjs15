@@ -15,7 +15,11 @@ import axios from "axios";
 // import { useUserStore } from "@/app/stores/useUserStore";
 
 
-const TasksArea = ({ tasks, tasksList }: {tasks: Task[], tasksList?: TaskList[]}) => {
+const TasksArea = ({ tasks, tasksList, fetchTasks }: {
+  tasks: Task[],
+  tasksList?: TaskList[],
+  fetchTasks: () => void
+}) => {
  // const { tasks, fetchTasks } = useTasksStore();
 
 
@@ -41,7 +45,7 @@ const TasksArea = ({ tasks, tasksList }: {tasks: Task[], tasksList?: TaskList[]}
         <>
           {tasks.map((singleTask, index) => (
             <div className="" key={index}>
-              <SingleTask key={singleTask.id} singleTask={singleTask} id={singleTask._id} />
+              <SingleTask key={singleTask.id} singleTask={singleTask} id={singleTask._id} fetchTasks={fetchTasks} />
             </div>
           ))}
         </>
@@ -51,7 +55,11 @@ const TasksArea = ({ tasks, tasksList }: {tasks: Task[], tasksList?: TaskList[]}
 }
 
 
-export function SingleTask({ singleTask, id }: { singleTask: Task, id: string }) {
+export function SingleTask({ singleTask, id, fetchTasks }: { 
+  singleTask: Task,
+  id: string,
+  fetchTasks: () => void
+ }) {
 
   console.log(id);
   
@@ -78,7 +86,7 @@ useEffect(() => {
     >
       <div className="flex items-center gap-4">
 
-        <CheckBoxComponent singleTask={singleTask} />
+        <CheckBoxComponent singleTask={singleTask} fetchTasks={fetchTasks} />
 
         <div className="flex flex-row gap-[6px] items-center justify-center">
         <label
@@ -100,8 +108,8 @@ useEffect(() => {
         </div>
       </div>
       <div className="flex gap-3 items-center ">
-      <ComboboxDemo singleTask={singleTask} />
-      <TasksOptions singleTask={singleTask} id={id} />
+      <ComboboxDemo singleTask={singleTask} fetchTasks={fetchTasks} />
+      <TasksOptions singleTask={singleTask} id={id} fetchTasks={fetchTasks} />
       </div>
     </div>
   )

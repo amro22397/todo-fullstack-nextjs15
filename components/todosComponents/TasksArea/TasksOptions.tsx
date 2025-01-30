@@ -47,7 +47,11 @@ import { AppContext } from "@/context/AppContext";
 import axios from "axios";
 import { error } from "console";
 
-const TasksOptions = ({ singleTask, id }: { singleTask: Task, id: string }) => {
+const TasksOptions = ({ singleTask, id, fetchTasks }: { 
+  singleTask: Task,
+  id: string,
+  fetchTasks: () => void
+ }) => {
 
   {/*
     const {
@@ -66,6 +70,7 @@ const TasksOptions = ({ singleTask, id }: { singleTask: Task, id: string }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isAlertDialogOpen, setIsAlertDialogOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [copyLoading, setCopyLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     name: singleTask?.name || "", priority: singleTask?.priority || "", status: singleTask?.status || "", userId: singleTask?.userId || ""
@@ -89,7 +94,7 @@ const TasksOptions = ({ singleTask, id }: { singleTask: Task, id: string }) => {
     })
     .then(() => {
       setIsTaskDialogOpened(false);
-      window.location.reload();
+      fetchTasks();
     })
     .catch((error) => {
       toast({
@@ -99,6 +104,30 @@ const TasksOptions = ({ singleTask, id }: { singleTask: Task, id: string }) => {
     .finally(() => {
       setLoading(false)
     })
+
+  }
+
+
+  const handleCopy = async (e: any) => {
+    e.preventDefault();
+
+    setCopyLoading(true);
+
+    try {
+      
+      await navigator.clipboard.writeText(singleTask.name);
+
+      toast({
+        className: "text-white bg-yellow-500 border-none",
+        title: "Copied to clipboard"
+      })
+
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: `${error}`
+      })
+    }
 
   }
 
@@ -112,7 +141,7 @@ const TasksOptions = ({ singleTask, id }: { singleTask: Task, id: string }) => {
     .then(() => {
       setIsDropdownOpen(false);
       setIsAlertDialogOpen(false)
-      window.location.reload();
+      fetchTasks();
     })
     .then(() => {
       toast({
@@ -142,7 +171,7 @@ const TasksOptions = ({ singleTask, id }: { singleTask: Task, id: string }) => {
             Edit
             <DropdownMenuShortcut>⌘E</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => handleItemClick("copy")}>
+          <DropdownMenuItem onClick={handleCopy}>
             Copy
             <DropdownMenuShortcut>⌘C</DropdownMenuShortcut>
           </DropdownMenuItem>

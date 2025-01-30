@@ -18,7 +18,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 // import { useUserStore } from "@/app/stores/useUserStore";
 
-const TaskDialog = ({ taskListId, email }: { taskListId?: string, email: string | null | undefined }) => {
+const TaskDialog = ({ taskListId, email, fetchTasks }: { 
+  taskListId?: string, 
+  email: string | null | undefined,
+  fetchTasks: () => void
+ }) => {
 
     const [formData, setFormData] = useState({
       name: "",
@@ -46,20 +50,23 @@ const TaskDialog = ({ taskListId, email }: { taskListId?: string, email: string 
     }, [isTaskDialogOpened]);
 
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: any) => {
 
+    e.preventDefault();
+    
     setLoading(true);
 
     axios.post("/api/tasks", formData)
     .then(() => {
       setIsTaskDialogOpened(false);
-      window.location.reload();
+      fetchTasks();
     })
     .then(() => {
       toast({
         title: "Task added successfully",
       })
     })
+    
     .catch((error) => {
       toast({
         title: `error ${error}`,

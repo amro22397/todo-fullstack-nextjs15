@@ -37,7 +37,10 @@ const priorities = [
   },
 ];
 
-const PriorityCombobox = ({ singleTask }: { singleTask: Task }) => {
+const PriorityCombobox = ({ singleTask, fetchTasks }: { 
+  singleTask: Task,
+  fetchTasks: () => void
+ }) => {
 
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
@@ -64,8 +67,8 @@ const PriorityCombobox = ({ singleTask }: { singleTask: Task }) => {
         })
       })
       .then(() => {
-        setIsLoading(true);
-        window.location.reload();
+        setIsLoading(false);
+        fetchTasks();
       })
       .catch((error) => {
         toast({

@@ -5,7 +5,11 @@ import React from 'react'
 import EditDeleteTaskList from './EditDeleteTaskList'
 import Link from 'next/link'
 
-const SidebarTaskLists = ({ tasksList, email }: { tasksList: TaskList[], email: string | null | undefined}) => {
+const SidebarTaskLists = ({ tasksList, email, fetchTasksList }: {
+  tasksList: TaskList[],
+  email: string | null | undefined,
+  fetchTasksList: () => void
+}) => {
   return (
     <ul className="flex flex-col mx-0 gap-3 max-md:mb-4">
               {tasksList.map((tasklist, index) => (
@@ -17,7 +21,7 @@ const SidebarTaskLists = ({ tasksList, email }: { tasksList: TaskList[], email: 
                   {tasklist.name}
                 </Link>
 
-                <EditDeleteTaskList tasklist={tasklist} tasksList={tasksList} email={email} />
+                <EditDeleteTaskList tasklist={tasklist} tasksList={tasksList} email={email} fetchTasksList={fetchTasksList} />
                 
                 </div>
               ))}

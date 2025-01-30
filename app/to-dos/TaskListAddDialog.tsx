@@ -21,9 +21,10 @@ import { TaskList } from '../data/Tasks'
 import { useRouter } from 'next/navigation'
 
 
-const TaskListAddDialog = ({ tasksList, email }: {
+const TaskListAddDialog = ({ tasksList, email, fetchTasksList }: {
   tasksList: TaskList[],
-  email: string | null | undefined
+  email: string | null | undefined,
+  fetchTasksList: () => void;
 }) => {
 
   const router = useRouter();
@@ -54,7 +55,7 @@ const TaskListAddDialog = ({ tasksList, email }: {
       axios.post("/api/tasks-list", formData)
       .then(() => {
         setIsAddTaskListDialogOpen(false);
-        window.location.reload();
+        fetchTasksList();
       })
       .then(() => {
         toast({
@@ -74,7 +75,7 @@ const TaskListAddDialog = ({ tasksList, email }: {
 
 
     useEffect(() => {
-            if (isAddTaskListDialogOpen && tasksList.length === 0) {
+            if (!isAddTaskListDialogOpen && tasksList.length === 0) {
               router.push('/to-dos');
             }
           }, [isAddTaskListDialogOpen, tasksList.length]);
