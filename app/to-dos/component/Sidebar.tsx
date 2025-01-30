@@ -23,6 +23,8 @@ useEffect(() => {
     fetchTasksList();
 }, []);
 
+console.log(tasksList);
+
   // const session = await getSession();
   //   console.log(session);
 
