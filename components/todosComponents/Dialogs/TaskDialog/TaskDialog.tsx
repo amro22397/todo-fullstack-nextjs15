@@ -1,6 +1,5 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { FormProvider, useForm } from "react-hook-form";
 import {
   Dialog,
   DialogContent,
@@ -11,34 +10,21 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 
-import { IoIosCloseCircle } from "react-icons/io";
-import { IoMdClose } from "react-icons/io";
-
-
 import TaskForm from "./TaskForm";
 import { FaPlus } from "react-icons/fa";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { useContext, useEffect, useState } from "react";
 // import { useTasksStore } from "@/app/stores/useTasksStore";
-import { nanoid } from "nanoid";
-import { Task } from "@/app/data/Tasks";
 import { toast } from "@/hooks/use-toast";
-import { useSession } from "next-auth/react";
 import axios from "axios";
-import { AppContext } from "@/context/AppContext";
+import { useEffect, useState } from "react";
 // import { useUserStore } from "@/app/stores/useUserStore";
 
-const TaskDialog = ({ taskListId }: { taskListId?: string}) => {
-
-  const session = useSession();
-  console.log(session?.data?.user?.email)
+const TaskDialog = ({ taskListId, email }: { taskListId?: string, email: string | null | undefined }) => {
 
     const [formData, setFormData] = useState({
       name: "",
       priority : "",
       status: "",
-      userEmail: session?.data?.user?.email || "",
+      userEmail: email || "",
       taskListId: taskListId || "",
       userId: "",
     });
@@ -53,7 +39,7 @@ const TaskDialog = ({ taskListId }: { taskListId?: string}) => {
         name: "",
       priority : "",
       status: "",
-      userEmail: session?.data?.user?.email || "",
+      userEmail: email || "",
       taskListId: taskListId || "",
       userId: "",
       })
@@ -87,14 +73,14 @@ const TaskDialog = ({ taskListId }: { taskListId?: string}) => {
   return (
     <Dialog open={isTaskDialogOpened} onOpenChange={() => setIsTaskDialogOpened(!isTaskDialogOpened)}>
       <DialogTrigger asChild>
-        <Button className="flex items-center gap-1">
+        <Button className="flex items-center gap-1 text-white">
           <FaPlus />
           <span>New Task</span>
         </Button>
       </DialogTrigger>
       {/* Form Provider */}
       
-        <DialogContent className="p-7 poppins">
+        <DialogContent className="p-7 poppins dark:bg-neutral-800">
 
         {/*
         <IoMdClose onClick={() => {
@@ -119,7 +105,7 @@ const TaskDialog = ({ taskListId }: { taskListId?: string}) => {
           <form onSubmit={handleSubmit}>
             <TaskForm isTaskDialogOpened={isTaskDialogOpened} formData={formData} setFormData={setFormData} />
             <DialogFooter className="mt-11">
-              <Button type="submit" className="flex items-center gap-1">
+              <Button type="submit" className="flex items-center gap-1 text-white">
                 {loading ? (
                   <div>loading...</div>
                 ) : (

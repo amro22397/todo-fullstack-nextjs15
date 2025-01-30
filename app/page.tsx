@@ -9,9 +9,9 @@ const page = async () => {
   const session = await getSession();
   console.log(session?.user?.email)
 
-  // if (session?.user?.email) {
-  //   return redirect('/to-dos');
-  // }
+  if (session?.user?.email) {
+    return redirect('/to-dos');
+  }
 
   return (
     <div className='flex justify-center items-center h-screen poppins'>

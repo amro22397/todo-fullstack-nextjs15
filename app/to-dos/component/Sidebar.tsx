@@ -7,7 +7,7 @@ import SidebarTaskLists from './SidebarTaskLists'
 import axios from 'axios'
 
 
-const SideBar = ({}: {}) => {
+const SideBar = ({ email }: { email: string | null | undefined}) => {
 
 
   const [tasksList, setTasksList] = useState([]);
@@ -36,23 +36,24 @@ useEffect(() => {
 
   return (
     <div className="max-md:z-50
-    md:w-[400px] w-[98%] sm:w-[95%] 
+    md:w-[400px] w-[100%] mx-auto sm:w-[95%] 
      md:h-screen border-r border-solid px-3 sm:px-14
+     dark:bg-zinc-700
     
-        border-gray-200 md:px-[11px] flex flex-col gap-4">
+        border-gray-200 dark:border-zinc-900 md:px-[11px] flex flex-col gap-4">
 
 
             <AppLogo className="mt-5"/>
 
             <div className="flex flex-col gap-3 mx-2">
             <div className="flex flex-row justify-between items-center">
-            <h2 className="text-lg text-gray-700">Tasks List</h2>
+            <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-100 mb-2">Tasks List</h2>
 
-            <TaskListAddDialog tasksList={tasksList} />
+            <TaskListAddDialog tasksList={tasksList} email={email} />
             
             </div>
 
-            <SidebarTaskLists tasksList={tasksList} />
+            <SidebarTaskLists tasksList={tasksList} email={email} />
             </div>
 
 

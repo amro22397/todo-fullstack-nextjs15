@@ -21,9 +21,11 @@ import { TaskList } from '../data/Tasks'
 import { useRouter } from 'next/navigation'
 
 
-const TaskListAddDialog = ({ tasksList }: { tasksList: TaskList[]}) => {
+const TaskListAddDialog = ({ tasksList, email }: {
+  tasksList: TaskList[],
+  email: string | null | undefined
+}) => {
 
-  const session = useSession();
   const router = useRouter();
 
   console.log(tasksList.length);
@@ -33,14 +35,14 @@ const TaskListAddDialog = ({ tasksList }: { tasksList: TaskList[]}) => {
 
     const [formData, setFormData] = useState({
       name: "",
-      userEmail: session?.data?.user?.email || "",
+      userEmail: email || "",
     });
 
 
     useEffect(() => {
       setFormData({
         name: "",
-      userEmail: session?.data?.user?.email || "",
+      userEmail: email || "",
       })
     }, [isAddTaskListDialogOpen]);
 
@@ -84,7 +86,7 @@ const TaskListAddDialog = ({ tasksList }: { tasksList: TaskList[]}) => {
 
   <DialogTrigger>
     <span>
-    <Plus size={20} className='hover:text-gray-700 active:scale-95'/>
+    <Plus size={20} className='hover:text-gray-700 dark:hover:text-gray-300 active:scale-95'/>
     </span> 
   </DialogTrigger>
 

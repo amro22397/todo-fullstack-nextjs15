@@ -35,16 +35,14 @@ import { usePathname, useRouter } from 'next/navigation'
 
   
 
-const EditDeleteTaskList = ({ tasklist, tasksList }: {
-  tasklist: TaskList, tasksList: TaskList[]
+const EditDeleteTaskList = ({ tasklist, tasksList, email }: {
+  tasklist: TaskList, tasksList: TaskList[],
+  email: string | null | undefined
 }) => {
 
-    const session = useSession();
     const router = useRouter();
 
     const pathname = usePathname();
-    console.log(pathname);
-    console.log(pathname.includes(tasklist._id))
 
     const taskListIconSize = 17;
   const taskListButtonClassName = "cursor-pointer active:scale-95"
@@ -56,14 +54,14 @@ const EditDeleteTaskList = ({ tasklist, tasksList }: {
 
   const [formData, setFormData] = useState({
         name: tasklist.name || "",
-        userEmail: session?.data?.user?.email || "",
+        userEmail: email || "",
       });
   
   
       useEffect(() => {
         setFormData({
             name: tasklist.name || "",
-            userEmail: session?.data?.user?.email || "",
+            userEmail: email || "",
         })
       }, [openEditDialog]);
 
@@ -134,9 +132,13 @@ const EditDeleteTaskList = ({ tasklist, tasksList }: {
   return (
     <div className="flex flex-row items-center gap-2">
                   <Edit2 size={taskListIconSize} onClick={() => setEditDialog(true)}
-                  className={`text-green-700 hover:text-green-800 ${taskListButtonClassName}`} />
+                  className={`text-green-700 hover:text-green-800
+                  dark:text-green-200 dark:hover:text-green-300
+                  ${taskListButtonClassName}`} />
                   <Trash size={taskListIconSize} onClick={() => setDeleteDialog(true)}
-                  className={`text-red-600 hover:text-red-700 ${taskListButtonClassName}`} />
+                  className={`text-red-600 hover:text-red-700
+                  dark:text-red-300 dark:hover:text-red-400
+                  ${taskListButtonClassName}`} />
 
 
 

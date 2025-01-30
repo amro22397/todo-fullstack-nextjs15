@@ -29,7 +29,7 @@ export default async function RootLayout({
   return (
     
         <div className="flex md:flex-row flex-col">
-        <SideBar />
+        <SideBar email={session?.user?.email} />
         {children}
         </div>
         

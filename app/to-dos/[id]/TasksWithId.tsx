@@ -71,7 +71,7 @@ const TasksWithId = ({ id, email }: { id: string, email: string | null | undefin
         {/* <CircularProgress size="sm" color="primary" /> */}
         <TaskHeader pagetaskList={pageTasksList} email={email} />
         <Stats tasks={tasks}/>
-        <AllTasksHeader taskListId={id} />
+        <AllTasksHeader taskListId={id} email={email} />
         <TasksArea tasks={tasks} tasksList={tasksList}  />
         <TasksFooter tasks={tasks} />
       </div>
@@ -79,18 +79,18 @@ const TasksWithId = ({ id, email }: { id: string, email: string | null | undefin
   )
 }
 
-function AllTasksHeader({ taskListId }: { taskListId: string}) {
+function AllTasksHeader({ taskListId, email }: { taskListId: string, email: string | null | undefined }) {
 
   
     return (
       <div className="flex justify-between items-center mt-4 mb-3">
         <div className="flex flex-col gap-1">
           <h2 className="text-xl font-semibold">{`Today's Task`}</h2>
-          <p className="text-sm text-gray-400">{formatDate()}</p>
+          <p className="text-sm text-gray-400 dark:text-gray-200">{formatDate()}</p>
         </div>
   
         
-        <TasksDialog taskListId={taskListId} />
+        <TasksDialog taskListId={taskListId} email={email} />
         
       </div>
     );

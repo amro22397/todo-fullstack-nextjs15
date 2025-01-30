@@ -23,16 +23,16 @@ const TasksArea = ({ tasks, tasksList }: {tasks: Task[], tasksList?: TaskList[]}
     <ScrollArea className="h-72 flex flex-col gap-4">
       {tasksList?.length === 0 ? (
         <div className="  h-full w-full flex items-center justify-center  flex-col gap-6">
-        <FaUmbrellaBeach className="text-[79px] text-slate-500 opacity-85" />
-        <span className="text-sm text-slate-400 opacity-85 text-center">
+        <FaUmbrellaBeach className="text-[79px] text-slate-500 dark:text-slate-200 opacity-85" />
+        <span className="text-sm text-slate-400 dark:text-slate-100 opacity-85 text-center">
           It looks like there are no tasks lists available. <br /> Click on the sidebar to
           add a new task list
         </span>
       </div>
       ) : tasks.length === 0 ? (
         <div className="  h-full w-full flex items-center justify-center  flex-col gap-6">
-          <FaUmbrellaBeach className="text-[79px] text-slate-500 opacity-85" />
-          <span className="text-sm text-slate-400 opacity-85 text-center">
+          <FaUmbrellaBeach className="text-[79px] text-slate-500 dark:text-slate-200 opacity-85" />
+          <span className="text-sm text-slate-400 dark:text-slate-100 opacity-85 text-center">
             It looks like there are no tasks available. <br /> Click above to
             add a new task
           </span>

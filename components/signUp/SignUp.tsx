@@ -104,7 +104,7 @@ const SignUp = () => {
 
     const handleSignUpWithGoogle = async (e:any) => {
     e.preventDefault();
-    signIn('google', {callbackUrl: '/page'})
+    signIn('google', {callbackUrl: '/to-dos'})
 
 
     }
@@ -155,9 +155,9 @@ const SignUp = () => {
 
 
   return (
-    <div>
+    <div className="">
       <AppLogo />
-      <Card className="w-full max-w-sm py-2">
+      <Card className="w-full max-w-sm py-2 dark:bg-zinc-900">
         
           <form onSubmit={handleSubmit}>
             <CardHeader>
@@ -192,7 +192,7 @@ const SignUp = () => {
               </div>
             </CardContent>
             <CardFooter>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full text-white">
                 {loading ? "Loading..." : "Create Account"}
               </Button>
             </CardFooter>

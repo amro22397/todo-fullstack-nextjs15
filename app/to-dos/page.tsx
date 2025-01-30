@@ -1,7 +1,9 @@
 
 
+import { FaUmbrellaBeach } from "react-icons/fa6";
 import TaskHeader from "../../components/todosComponents/TaskHeader/TaskHeader";
 import { getSession } from "../actions/getUser";
+import { redirect } from "next/navigation";
 
 
 
@@ -10,10 +12,10 @@ const page = async () => {
   const session = await getSession();
   console.log(session);
 
-    /* mongoose.connect(process.env.MONGO_URL as string)
-    const tasks = await Tasks.find({userEmail: {$in: [session?.user?.email]}}, {}, {sort: {createdAt: -1}});
+    // mongoose.connect(process.env.MONGO_URL as string)
+    // const tasks = await Tasks.find({userEmail: {$in: [session?.user?.email]}}, {}, {sort: {createdAt: -1}});
 
-    const jTasks = JSON.parse(JSON.stringify(tasks))
+    // const jTasks = JSON.parse(JSON.stringify(tasks))
 
 
     if (!session?.user?.email) {
@@ -21,7 +23,7 @@ const page = async () => {
     redirect('/')
     
     }
-      */
+      
 
   return (
     <div className="border flex items-center w-full justify-center poppins md:min-h-screen max-md:my-20  ">
@@ -34,10 +36,10 @@ const page = async () => {
         
         
         <div className="  h-full w-full flex items-center justify-center  flex-col gap-2">
-                 {/*  <FaUmbrellaBeach className="text-[79px] text-slate-500 opacity-85" /> */}
+                  <FaUmbrellaBeach className="text-[79px] text-slate-500 dark:text-slate-200 opacity-85" />
 
                  <span className="font-semibold tracking-wide">Welcome to Todo App</span>
-                  <span className="text-sm text-slate-600 text-center">Click on or add a list on the sidebar<br /> to start adding tasks</span>
+                  <span className="text-sm text-slate-600 dark:text-slate-200 text-center">Click on or add a list on the sidebar<br /> to start adding tasks</span>
                 </div>
 
         {/*

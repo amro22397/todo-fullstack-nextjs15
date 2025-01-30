@@ -68,7 +68,8 @@ const ClearAllDialog = ({tasks}: {
     </AlertDialogHeader>
     <AlertDialogFooter>
       <AlertDialogCancel onClick={() => setOpenDeleteDialog(false)}>Cancel</AlertDialogCancel>
-      <AlertDialogAction onClick={deleteFunction}>Delete</AlertDialogAction>
+      <AlertDialogAction onClick={deleteFunction}
+      className="text-white">Delete</AlertDialogAction>
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>

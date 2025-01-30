@@ -20,6 +20,7 @@ import { Task } from "@/app/data/Tasks";
 // import { useTasksStore } from "@/app/stores/useTasksStore";
 import { toast } from "@/hooks/use-toast";
 import axios from "axios";
+import { Loader2 } from "lucide-react";
 
 const priorities = [
   {
@@ -41,6 +42,8 @@ const PriorityCombobox = ({ singleTask }: { singleTask: Task }) => {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
+
+  const [commandListOpen, setCommandListOpen] = React.useState(false);
   // const { updateTaskFunction, isLoading } = useTasksStore();
 
 
@@ -82,7 +85,7 @@ const PriorityCombobox = ({ singleTask }: { singleTask: Task }) => {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[100px] justify-between"
+          className="w-[100px] justify-between dark:bg-gray-700"
         >
           {value
             ? priorities.find((framework) => framework.value === value)?.label
@@ -91,7 +94,8 @@ const PriorityCombobox = ({ singleTask }: { singleTask: Task }) => {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[130px] p-0">
-        <Command>
+        
+          <Command>
           <CommandList>
             <CommandGroup>
               {priorities.map((framework) => (
@@ -102,7 +106,7 @@ const PriorityCombobox = ({ singleTask }: { singleTask: Task }) => {
                   disabled={isLoading}
                 >
                   {value === framework.value && isLoading
-                    ? "Loading..." // Show "Loading..." when the priority is being updated
+                    ? <Loader2 className="animate-spin" /> // Show "Loading..." when the priority is being updated
                     : framework.label}
 
                   {!isLoading && (
@@ -121,6 +125,7 @@ const PriorityCombobox = ({ singleTask }: { singleTask: Task }) => {
             </CommandGroup>
           </CommandList>
         </Command>
+        
       </PopoverContent>
     </Popover>
   )
