@@ -3,7 +3,7 @@ import { getSession } from "@/app/actions/getUser";
 import { getServerSession } from 'next-auth';
 import { authConfig } from './auth/[...nextauth]';
 import { NextApiRequest, NextApiResponse } from "next";
-import { Tasks } from "@/models/tasks";
+import Tasks from "@/models/tasks";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {

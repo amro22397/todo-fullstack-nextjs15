@@ -1,7 +1,7 @@
-import { model, models, Schema } from "mongoose";
+import mongoose from "mongoose";
 
 
-const TasksListSchema = new Schema({
+const TasksListSchema = new mongoose.Schema({
     name: {
         type: String,
     },
@@ -14,4 +14,4 @@ const TasksListSchema = new Schema({
 }, { timestamps: true });
 
 
-export const TasksList = models?.TasksList || model("TasksList", TasksListSchema)
+export default mongoose.models?.TasksList || mongoose.model("TasksList", TasksListSchema)

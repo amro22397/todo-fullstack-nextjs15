@@ -1,6 +1,6 @@
-import { model, models, Schema } from "mongoose"
+import mongoose from "mongoose"
 
-const TodoSchema = new Schema({
+const TodoSchema = new mongoose.Schema({
     text: {
         type: String,
         required: true,
@@ -12,4 +12,4 @@ const TodoSchema = new Schema({
     },
 }, { timestamps: true });
 
-export const Todo = models?.Todo || model("Todo", TodoSchema)
+export default mongoose.models?.Todo || mongoose.model("Todo", TodoSchema)

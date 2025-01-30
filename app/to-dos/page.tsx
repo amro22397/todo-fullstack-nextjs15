@@ -1,7 +1,7 @@
 
 
 import TaskHeader from "../../components/todosComponents/TaskHeader/TaskHeader";
-import { getSession, getUser } from "../actions/getUser";
+import { getSession } from "../actions/getUser";
 
 
 

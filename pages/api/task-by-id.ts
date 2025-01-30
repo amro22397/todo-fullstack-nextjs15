@@ -2,7 +2,7 @@ import { connectToDatabase } from "../../utils/db";
 import { getServerSession } from 'next-auth';
 import { authConfig } from './auth/[...nextauth]';
 import { NextApiRequest, NextApiResponse } from "next";
-import { Tasks } from "@/models/tasks";
+import Tasks from "@/models/tasks";
 // model import 
 
 

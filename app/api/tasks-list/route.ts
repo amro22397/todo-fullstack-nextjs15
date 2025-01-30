@@ -1,4 +1,4 @@
-import { TasksList } from "@/models/tasks-list";
+import TasksList from "@/models/tasks-list";
 import mongoose from "mongoose";
 
 export async function POST(request: Request) {

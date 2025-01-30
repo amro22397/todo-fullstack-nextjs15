@@ -1,13 +1,7 @@
 
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
-import { AppLogo } from "@/components/AppLogo";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
-import TaskListAddDialog from "./TaskListAddDialog";
 import SideBar from "./component/Sidebar";
-import AppProvider from "@/AppContext";
 import { getSession } from "../actions/getUser";
 
 

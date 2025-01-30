@@ -6,8 +6,6 @@ import "./globals.css";
 import AppProvider from "@/AppContext.js"
 import AppContextProvider from "@/context/AppContext";
 import { ThemeProvider } from "@/components/theme-provider";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "../components/todosComponents/AppSidebar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
