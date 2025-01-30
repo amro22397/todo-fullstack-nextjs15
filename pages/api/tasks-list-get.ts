@@ -2,8 +2,7 @@ import { connectToDatabase } from "../../utils/db";
 import { getServerSession } from 'next-auth';
 import { authConfig } from './auth/[...nextauth]';
 import { NextApiRequest, NextApiResponse } from "next";
-import TasksList from "@/models/tasks-list";
-// model import 
+import TasksList from "../../models/tasks-list";
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

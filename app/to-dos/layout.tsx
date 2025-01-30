@@ -24,12 +24,12 @@ export default async function RootLayout({
 }>) {
 
   const session = await getSession();
-      console.log(session);
+      console.log(session?.user?.email);
 
   return (
     
         <div className="flex md:flex-row flex-col">
-        <SideBar session={session} />
+        <SideBar />
         {children}
         </div>
         

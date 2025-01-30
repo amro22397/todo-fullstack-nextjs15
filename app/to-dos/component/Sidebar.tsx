@@ -3,30 +3,11 @@
 import { AppLogo } from '@/components/AppLogo'
 import React, { useEffect, useState } from 'react'
 import TaskListAddDialog from '../TaskListAddDialog'
-import mongoose from 'mongoose'
-import { TasksList } from '@/models/tasks-list'
-import { Edit, Trash, X } from 'lucide-react'
-
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import EditDeleteTaskList from './EditDeleteTaskList'
-import Link from 'next/link'
-import CloseSidebar from './CloseSidebar'
 import SidebarTaskLists from './SidebarTaskLists'
-import { getServerSession } from 'next-auth/next'
-import { authConfig } from '@/lib/auth'
-import { getSession } from '@/app/actions/getUser'
 import axios from 'axios'
 
 
-const SideBar = ({ session }: { session: any}) => {
+const SideBar = ({}: {}) => {
 
 
   const [tasksList, setTasksList] = useState([]);
