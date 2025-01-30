@@ -4,6 +4,7 @@ import SearchButton from "./SearchButton";
 import { FaCheckDouble } from "react-icons/fa6";
 import { TaskList } from "@/app/data/Tasks";
 import { getSession } from "@/app/actions/getUser";
+import { AppLogo } from "@/components/AppLogo";
 
 const TaskHeader = ({ pagetaskList, email }: {pagetaskList?: TaskList | any, email: string | null | undefined}) => {
 
@@ -23,21 +24,6 @@ const TaskHeader = ({ pagetaskList, email }: {pagetaskList?: TaskList | any, ema
     </div>
   )
 }
-
-function AppLogo() {
-    return (
-      <div className="flex gap-2 items-center justify-center    ">
-        <div className="bg-primary p-2 text-white rounded-sm text-xl hidden">
-          <FaCheckDouble />
-        </div>
-  
-        <div className="font-bold  text-3xl flex gap-1 justify-center items-center">
-          <span className="text-primary">Todo</span>
-          <span>App</span>
-        </div>
-      </div>
-    );
-  }
   
 
 export default TaskHeader
