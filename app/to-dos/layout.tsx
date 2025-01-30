@@ -27,13 +27,13 @@ export default async function RootLayout({
   const session = await getSession();
       console.log(session?.user?.email);
 
-      const tasksLists = await tasksList.find({userEmail: {$in: [session?.user?.email]}})
-      const jTasklists = JSON.parse(JSON.stringify(tasksLists));
+      // const tasksLists = await tasksList.find({userEmail: {$in: [session?.user?.email]}})
+      // const jTasklists = JSON.parse(JSON.stringify(tasksLists));
 
   return (
     
         <div className="flex md:flex-row flex-col">
-        <SideBar email={session?.user?.email} tasksList={jTasklists} />
+        <SideBar email={session?.user?.email} />
         {children}
         </div>
         

@@ -7,26 +7,25 @@ import SidebarTaskLists from './SidebarTaskLists'
 import axios from 'axios'
 import { TaskList } from '@/app/data/Tasks'
 
-const SideBar = ({ email, tasksList }: {
-  email: string | null | undefined,
-  tasksList: TaskList[]
+const SideBar = ({ email }: {
+  email: string | null | undefined
 }) => {
 
 
 
 
-//   const [tasksList, setTasksList] = useState([]);
+  const [tasksList, setTasksList] = useState([]);
 
-//   const fetchTasksList = async () => {
-//     const res = await axios.get(`/api/tasks-list-get`);
-//     console.log(res.data)
+  const fetchTasksList = async () => {
+    const res = await axios.get(`/api/tasks-list-get`);
+    console.log(res.data)
 
-//     setTasksList(res.data.data);
-// }
+    setTasksList(res.data.data);
+}
 
-// useEffect(() => {
-//     fetchTasksList();
-// }, []);
+useEffect(() => {
+    fetchTasksList();
+}, []);
 
 console.log(tasksList);
 
