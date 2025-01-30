@@ -1,6 +1,6 @@
 'use client'
 
-import { Edit, Edit2, Trash } from 'lucide-react'
+import { Edit, Edit2, Loader2, Trash } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
 import {
@@ -50,6 +50,7 @@ const EditDeleteTaskList = ({ tasklist, tasksList, email }: {
   const [openEditDialog, setEditDialog] = useState(false);
   const [deleteDialog, setDeleteDialog] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
 
   const [formData, setFormData] = useState({
@@ -96,7 +97,7 @@ const EditDeleteTaskList = ({ tasklist, tasksList, email }: {
   const handleDelete = async (e: React.MouseEvent) => {
     e.preventDefault();
 
-    setLoading(true);
+    setDeleteLoading(true);
 
     axios.delete(`/api/tasks-list/${tasklist._id}`)
     .then(() => {
@@ -118,7 +119,7 @@ const EditDeleteTaskList = ({ tasklist, tasksList, email }: {
         })
     })
     .finally(() => {
-        setLoading(false)
+      setDeleteLoading(false)
     })
   }
 
@@ -171,7 +172,7 @@ const EditDeleteTaskList = ({ tasklist, tasksList, email }: {
       <DialogFooter className="mt-11">
               <Button type="submit" className="flex items-center gap-1">
                 {loading ? (
-                  <div>loading...</div>
+                  <Loader2 className='animate-spin' />
                 ) : (
                   <span>Save task</span>
                 )}
@@ -199,7 +200,13 @@ const EditDeleteTaskList = ({ tasklist, tasksList, email }: {
 
     <AlertDialogFooter>
       <AlertDialogCancel onClick={() => setDeleteDialog(false)}>Cancel</AlertDialogCancel>
-      <AlertDialogAction onClick={handleDelete}>Continue</AlertDialogAction>
+      <AlertDialogAction onClick={handleDelete}>
+        {deleteLoading ? (
+          <Loader2 className='animate-spin' />
+        ) : 
+        "Continue"
+        }
+      </AlertDialogAction>
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>
