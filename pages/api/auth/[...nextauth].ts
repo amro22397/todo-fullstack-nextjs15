@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import { AuthOptions } from "next-auth";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google"
-import { User } from "@/models/user";
+import User from "@/models/user";
 import bcrypt from "bcrypt"
 
 export const authConfig: AuthOptions = {
