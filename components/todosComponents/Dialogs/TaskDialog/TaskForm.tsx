@@ -62,7 +62,7 @@ function TaskName({name, setName}: {name: string, setName: any}) {
         id="taskName"
         type="text"
         placeholder="Enter a name of the task"
-        className="mt-1 dark:text-gray-200 placeholder:dark:text-gray-300"
+        className="mt-1"
         defaultValue={name}
         onChange={setName}
       />

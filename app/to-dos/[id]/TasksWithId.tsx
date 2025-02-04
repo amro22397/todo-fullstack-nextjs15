@@ -87,7 +87,7 @@ function AllTasksHeader({ taskListId, email, fetchTasks }: {
 
   
     return (
-      <div className="flex justify-between items-center mt-4 mb-3">
+      <div className="flex justify-between items-center mt-3 mb-2">
         <div className="flex flex-col gap-1">
           <h2 className="text-xl font-semibold">{`Today's Task`}</h2>
           <p className="text-sm text-gray-400 dark:text-gray-200">{formatDate()}</p>

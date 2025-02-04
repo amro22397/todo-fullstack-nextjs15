@@ -9,31 +9,17 @@ import { useRouter } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 
 
-const CheckBoxComponent = ({ singleTask, fetchTasks }: { 
+const CheckBoxComponent = ({ singleTask, fetchTasks, handleCheckboxChange, loading }: { 
   singleTask: Task,
-  fetchTasks: () => void
+  fetchTasks: () => void,
+  handleCheckboxChange: () => void
+  loading: boolean
 }) => {
-    const [loading, setLoading] = useState(false);
+    
 
     const router = useRouter();
 
-    const handleCheckboxChange = () => {
-
-        setLoading(true);
-
-        axios.put("/api/tasks/update-status", {
-            id: singleTask?._id,
-            status: singleTask.status === "completed" ? "in progress" : "completed",
-        })
-        .then(() => {
-            setLoading(false);
-            fetchTasks();
-        })
-        .catch((error) => {
-            console.log(error);
-        })
     
-      }
   return (
     <div className='hover:opacity-90'>
       

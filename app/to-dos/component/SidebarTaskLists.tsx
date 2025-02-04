@@ -10,6 +10,11 @@ const SidebarTaskLists = ({ tasksList, email, fetchTasksList }: {
   email: string | null | undefined,
   fetchTasksList: () => void
 }) => {
+
+  function capitalizeFirstLetter(text: string) {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  }
+
   return (
     <ul className="flex flex-col mx-0 gap-3 max-md:mb-4">
               {tasksList.map((tasklist, index) => (
@@ -18,7 +23,7 @@ const SidebarTaskLists = ({ tasksList, email, fetchTasksList }: {
                   className="cursor-pointer font-semibold tracking-wider hover:text-gray-600
                   dark:hover:text-gray-200
                   text-md">
-                  {tasklist.name}
+                    {capitalizeFirstLetter(`${tasklist.name}`)}
                 </Link>
 
                 <EditDeleteTaskList tasklist={tasklist} tasksList={tasksList} email={email} fetchTasksList={fetchTasksList} />

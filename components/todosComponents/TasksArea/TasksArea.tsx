@@ -80,13 +80,33 @@ useEffect(() => {
 
   const lowerOpacity = singleTask.status === "completed" && "opacity-65"
 
+  const [loading, setLoading] = useState(false);
+  const handleCheckboxChange = () => {
+
+    setLoading(true);
+
+    axios.put("/api/tasks/update-status", {
+        id: singleTask?._id,
+        status: singleTask.status === "completed" ? "in progress" : "completed",
+    })
+    .then(() => {
+        setLoading(false);
+        fetchTasks();
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+
+  }
+
   return (
     <div
-      className={`flex items-center px-0 my-5 rounded-md w-full justify-between mb-0 ${lowerOpacity}`}
+      className={`flex items-center px-0 my-3 rounded-md w-full justify-between mb-0 ${lowerOpacity}`}
     >
       <div className="flex items-center gap-4">
 
-        <CheckBoxComponent singleTask={singleTask} fetchTasks={fetchTasks} />
+        <CheckBoxComponent singleTask={singleTask} fetchTasks={fetchTasks} handleCheckboxChange={handleCheckboxChange}
+        loading={loading} />
 
         <div className="flex flex-row gap-[6px] items-center justify-center">
         <label
@@ -97,6 +117,7 @@ useEffect(() => {
             htmlFor="task"
             className="md:text-md xl:text-lg font-semibold cursor-pointer hover:text-primary
             text-md"
+            onClick={handleCheckboxChange}
           >
             {singleTask.name}
           </label>

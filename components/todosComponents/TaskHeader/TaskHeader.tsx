@@ -12,7 +12,7 @@ const TaskHeader = ({ pagetaskList, email }: {pagetaskList?: TaskList | any, ema
   //   console.log(session?.user?.email)
 
   return (
-    <div className="flex justify-between  items-center mb-6">
+    <div className="flex justify-between  items-center mb-0">
       <AppLogo />
       <div className="flex items-center ">
       <div className="flex flex-col gap-0 mr-3 md:hidden lg:flex">
